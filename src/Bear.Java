@@ -12,4 +12,21 @@ public class Bear extends Enemy{
         this.defense = this.Body() + Math.ceil(level/2);
         this.attack = this.Power() * Math.ceil(level/3); 
     }
+
+    public double Attack(){
+        return this.attack;
+    }
+
+    public double Defense(){
+        return this.defense;
+    }
+
+    public void GetAttacked(double attack, double damage){
+        if (attack >= this.defense){
+            this.health -= damage;
+        }
+        if (this.health <= 0){
+            this.isDead();
+        }
+    }
 }
