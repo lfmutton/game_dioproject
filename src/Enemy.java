@@ -10,10 +10,18 @@ public class Enemy extends Character {
     public Enemy(String name, int level) {
         super(name, 10, 5);
         this.maxhealth = (int) (this.Body() * level);
-        this.defense = (int) this.Body() + level;
+        this.defense = EnemyDefense(this.Body(), level);
         this.level = level;
         this.health = this.maxhealth;
         this.attack = this.Power() * Math.ceil(level / 3);
+    }
+
+    private int EnemyDefense(int body, int level) {
+        int defense = body + level;
+        if (defense > 20) {
+            defense = 20 + level / 5;
+        }
+        return defense;
     }
 
     public double Attack() {

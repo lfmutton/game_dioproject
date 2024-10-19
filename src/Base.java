@@ -5,8 +5,35 @@ public class Base {
         Scanner scan = new Scanner(System.in);
         System.out.println("Choose the name of your character:");
         String name = scan.nextLine();
-        System.out.println("Write any class you want and write it down:");
-        String heroClass = scan.nextLine();
+        System.out.println("Choose your class:\n1 - Warrior\n2 - Mage\n3 - Assassin\n4 - Monk");
+        int number = 5;
+        String heroClass = "";
+        while (number < 1 || number > 4) {
+            number = scan.nextInt();
+
+            switch (number) {
+                case 1:
+                    heroClass = "Warrior";
+                    break;
+
+                case 2:
+                    heroClass = "Mage";
+                    break;
+
+                case 3:
+                    heroClass = "Assassin";
+                    break;
+
+                case 4:
+                    heroClass = "Monk";
+                    break;
+
+                default:
+                    System.out.println("This choice does not exist. Choose again:");
+                    System.out.println("Choose your class:\n1 - Warrior\n2 - Mage\n3 - Assassin\n4 - Monk");
+                    break;
+            }
+        }
         System.out.println("What level is  your character?");
         int level = scan.nextInt();
         Hero hero = new Hero(name, level, heroClass);
@@ -20,12 +47,14 @@ public class Base {
             choice = scan.nextInt();
             switch (choice) {
                 case 1:
+                    System.out.println("The " + hero.ClassName() + "attacked using " + hero.DamageType() + " damage!");
                     enemy.GetAttacked(hero.AttackTry(), hero.Attack());
                     break;
 
                 case 2:
-                    System.out.println("Hero Status:\nAttack Damage: " + hero.Attack() + "\nDefense: " + hero.Defense()
-                            + "\nAblities:");
+                    System.out.println("Hero Status:\nLevel: " + hero.ShowLevel() + "\nClass Name: " + hero.ClassName()
+                            + "\nAttack Damage: " + hero.Attack() + "\nDefense: " + hero.Defense()
+                            + "\nDamage type: " + hero.DamageType() + "\nAblities:");
                     hero.ShowAblities();
                     break;
                 case 3:

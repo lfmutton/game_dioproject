@@ -2,10 +2,12 @@ import java.util.*;
 
 public class HeroClass {
     private String className;
+    private String typeDamage;
     private Ability abilities[];
 
     public HeroClass(String name) {
         this.className = name;
+        this.typeDamage = ChoosingDamageType(name);
     }
 
     public boolean CheckIfHasAbilities() {
@@ -26,6 +28,23 @@ public class HeroClass {
             this.abilities[this.abilities.length] = a;
     }
 
+    public String ChoosingDamageType(String type) {
+        switch (type.toLowerCase()) {
+            case "mage":
+                return "magic";
+
+            case "warrior":
+                return "slashing";
+
+            case "assassin":
+                return "piercing";
+
+            case "monk":
+                return "bludgeoning";
+        }
+        return "";
+    }
+
     public double GetAbilityDamage(int i) {
         if (abilities[i] == null)
             return 0;
@@ -38,5 +57,13 @@ public class HeroClass {
                 System.out.printf(ability.AbilityName() + ": " + ability.AbilityDamage() + "\n");
             }
         }
+    }
+
+    public String DamageType() {
+        return this.typeDamage;
+    }
+
+    public String Name() {
+        return this.className;
     }
 }
