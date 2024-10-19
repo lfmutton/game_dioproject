@@ -47,7 +47,7 @@ public class Base {
             choice = scan.nextInt();
             switch (choice) {
                 case 1:
-                    System.out.println("The " + hero.ClassName() + "attacked using " + hero.DamageType() + " damage!");
+                    System.out.println("The " + hero.ClassName() + " attacked using " + hero.DamageType() + " damage!");
                     enemy.GetAttacked(hero.AttackTry(), hero.Attack());
                     break;
 
