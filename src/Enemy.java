@@ -1,33 +1,52 @@
-public class Enemy {
-    private String name;
-    private int body;
-    private double power;
-    private boolean alive;
+import java.lang.Math;
 
-    public Enemy(String name, int body, double power) {
-        this.name = name;
-        this.body = body;
-        this.power = power;
-        this.alive = false;
+public class Enemy extends Character {
+    private int maxhealth;
+    private int defense;
+    private int level;
+    private double health;
+    private double attack;
+
+    public Enemy(String name, int level) {
+        super(name, 10, 5);
+        this.maxhealth = (int) (this.Body() * level);
+        this.defense = (int) this.Body() + level;
+        this.level = level;
+        this.health = this.maxhealth;
+        this.attack = this.Power() * Math.ceil(level / 3);
     }
 
-    public int Body() {
-        return this.body;
+    public double Attack() {
+        return this.attack;
     }
 
-    public String Name() {
-        return this.name;
+    public int AttackTry() {
+        return (int) (Math.random() * 20 + 4);
     }
 
-    public double Power() {
-        return this.power;
+    public void GetAttacked(double attack, double damage) {
+        if (attack >= this.defense) {
+            this.health -= damage;
+        }
+        if (this.health <= 0) {
+            this.isDead();
+        }
     }
 
-    public void isDead() {
-        this.alive = false;
+    public int Defense() {
+        return this.defense;
     }
 
-    public boolean Alive() {
-        return this.alive;
+    public double Health() {
+        return this.health;
     }
+
+    public int MaxHealth() {
+        return this.maxhealth;
+    }
+
+    public void ShowStatus() {
+        System.out.println(this.Name() + ": " + this.maxhealth + "/" + this.health);
+    }
+
 }
