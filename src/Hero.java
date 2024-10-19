@@ -1,4 +1,5 @@
 public class Hero extends Character {
+    private int age;
     private int maxhealth;
     private int defense;
     private int level;
@@ -6,8 +7,9 @@ public class Hero extends Character {
     private double attack;
     private HeroClass heroClass;
 
-    public Hero(String name, int level, String heroClass) {
+    public Hero(String name, int age, int level, String heroClass) {
         super(name, 8, 6);
+        this.age = age;
         this.maxhealth = (int) (this.Body() * level);
         this.defense = HeroDefense(this.Body(), level);
         this.level = level;
@@ -22,6 +24,10 @@ public class Hero extends Character {
             defense = 18 + level / 5;
         }
         return defense;
+    }
+
+    public int Age() {
+        return this.age;
     }
 
     public void GetAttacked(int attack, double damage) {

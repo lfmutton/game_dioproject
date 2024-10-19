@@ -3,8 +3,10 @@ import java.util.*;
 public class Base {
     public static void main(String[] args) throws Exception {
         Scanner scan = new Scanner(System.in);
-        System.out.println("Choose the name of your character:");
+        System.out.println("Choose the name for your character:");
         String name = scan.nextLine();
+        System.out.println("Yours character age:");
+        int age = scan.nextInt();
         System.out.println("Choose your class:\n1 - Warrior\n2 - Mage\n3 - Assassin\n4 - Monk");
         int number = 5;
         String heroClass = "";
@@ -34,9 +36,9 @@ public class Base {
                     break;
             }
         }
-        System.out.println("What level is  your character?");
+        System.out.println("What level is your character?");
         int level = scan.nextInt();
-        Hero hero = new Hero(name, level, heroClass);
+        Hero hero = new Hero(name, age, level, heroClass);
         Enemy enemy = new Enemy("Bear", 13);
         while (hero.Alive()) {
             int choice;
@@ -52,10 +54,14 @@ public class Base {
                     break;
 
                 case 2:
-                    System.out.println("Hero Status:\nLevel: " + hero.ShowLevel() + "\nClass Name: " + hero.ClassName()
-                            + "\nAttack Damage: " + hero.Attack() + "\nDefense: " + hero.Defense()
-                            + "\nDamage type: " + hero.DamageType() + "\nAblities:");
+                    System.out.println(
+                            hero.Name() + " Status:\nAge: " + hero.Age() + "\nLevel: " + hero.ShowLevel()
+                                    + "\nClass Name: "
+                                    + hero.ClassName()
+                                    + "\nAttack Damage: " + hero.Attack() + "\nDefense: " + hero.Defense()
+                                    + "\nDamage type: " + hero.DamageType() + "\nAblities:");
                     hero.ShowAblities();
+                    System.out.println();
                     break;
                 case 3:
                     System.out.println("Coward... You deserve to DIE!");
